@@ -1,16 +1,19 @@
 package tech.dev.investmentms.entity;
 
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.List;
 
+@Builder
 @Document
-public class Portifolio {
+@Data
+public class Portfolio {
 
     @MongoId
-    @Indexed(name = "portfolio_id_idx")
     private String portfolioId;
 
     @Indexed(name = "customer_id_idx")
