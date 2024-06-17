@@ -23,9 +23,9 @@ public interface BrapiClient {
     }
 
     record StockDto(String currency,
-                           String shortName,
-                           String longName,
-                           String symbol,
-                           BigDecimal regularMarketPrice) {
+                   String shortName,
+                   String longName,
+                   String symbol,
+                   BigDecimal regularMarketPrice) {
     }
 }
