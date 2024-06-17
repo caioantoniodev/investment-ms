@@ -5,8 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
-import tech.dev.investmentms.amqp.model.OrderCreatedEvent;
 import tech.dev.investmentms.service.PortfolioService;
+
+import java.util.List;
 
 import static tech.dev.investmentms.config.RabbitConfig.ORDER_CREATED_QUEUE;
 
@@ -15,18 +16,24 @@ import static tech.dev.investmentms.config.RabbitConfig.ORDER_CREATED_QUEUE;
 @RequiredArgsConstructor
 public class OrderCreatedConsumer {
 
-/*
-    {"orderId": "b1223259-f495-4ece-8c97-2561c5cd92fe", "customerId": "0cfa8e24-bee1-4ff6-96b1-e11e71c8db1f", "items": [ {"ticket": "ETHE11", "quantity": 2} ]}
-*/
-
     private final PortfolioService portfolioService;
 
     @RabbitListener(queues = ORDER_CREATED_QUEUE)
-    public void listen(Message<OrderCreatedEvent> message) {
+    public void listen(Message<OrderCreatedConsumer.OrderCreatedEvent> message) {
         log.info("Message consumed: {}", message);
 
         var payload = message.getPayload();
 
         portfolioService.savePortfolio(payload);
     }
+
+    public record OrderCreatedEvent(String orderId,
+                             String customerId,
+                             List<OrderItemEvent> items) {
+    }
+
+    public record OrderItemEvent(String ticker, Integer quantity) {
+    }
 }
+
+

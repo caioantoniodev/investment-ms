@@ -1,0 +1,1 @@
+rabbitmqadmin get queue=investment-ms-order-created ackmode=ack_requeue_true

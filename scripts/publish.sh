@@ -1,0 +1,1 @@
+echo '{"orderId": "b1223259-f495-4ece-8c97-2561c5cd92fe", "customerId": "0cfa8e24-bee1-4ff6-96b1-e11e71c8db1f", "items": [ {"ticker": "ETHE11", "quantity": 2} ]}' | rabbitmqadmin publish exchange=amq.default routing_key=investment-ms-order-created

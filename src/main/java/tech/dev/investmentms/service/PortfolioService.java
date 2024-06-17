@@ -3,7 +3,7 @@ package tech.dev.investmentms.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tech.dev.investmentms.amqp.model.OrderCreatedEvent;
+import tech.dev.investmentms.amqp.OrderCreatedConsumer;
 import tech.dev.investmentms.entity.Portfolio;
 import tech.dev.investmentms.entity.PortfolioAsset;
 import tech.dev.investmentms.repository.PortfolioRepository;
@@ -18,7 +18,7 @@ public class PortfolioService {
 
     private final StockService stockService;
 
-    public void savePortfolio(OrderCreatedEvent orderCreatedEvent) {
+    public void savePortfolio(OrderCreatedConsumer.OrderCreatedEvent orderCreatedEvent) {
 
         List<PortfolioAsset> list = orderCreatedEvent.items().stream()
                 .map(orderItemEvent -> {
