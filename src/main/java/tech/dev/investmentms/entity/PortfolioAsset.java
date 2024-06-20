@@ -5,8 +5,6 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
-import java.math.BigDecimal;
-
 @Builder
 @Data
 public class PortfolioAsset {
@@ -15,7 +13,8 @@ public class PortfolioAsset {
     private String shortName;
     private String longName;
     private String symbol;
-    private BigDecimal regularMarketPrice;
+    @Field(targetType = FieldType.DOUBLE)
+    private Double regularMarketPrice;
     @Field(targetType = FieldType.INT64)
     private Integer quantity;
     private String error;
