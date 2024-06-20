@@ -14,7 +14,7 @@ import java.util.List;
 public class Portfolio {
 
     @MongoId
-    private String portfolioId;
+    private String id;
 
     @Indexed(name = "customer_id_idx")
     private String customerId;
