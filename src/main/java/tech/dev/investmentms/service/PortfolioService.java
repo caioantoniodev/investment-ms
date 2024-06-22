@@ -24,7 +24,6 @@ public class PortfolioService {
 
     private final StockService stockService;
 
-
     public void savePortfolio(OrderCreatedConsumer.OrderCreatedEvent orderCreatedEvent) {
 
         List<PortfolioAsset> list = orderCreatedEvent.items().stream()
