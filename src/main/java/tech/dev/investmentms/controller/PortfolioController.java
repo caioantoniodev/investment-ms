@@ -15,7 +15,6 @@ public class PortfolioController {
 
     private final PortfolioService portfolioService;
 
-
     @GetMapping("/customers/{id}")
     public ResponseEntity<PortfolioDto> portfolio(@PathVariable String id) {
         return ResponseEntity.ok(portfolioService.getPortfolio(id));
